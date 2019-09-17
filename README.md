@@ -10,6 +10,9 @@ This server is responsable to control and store the data inside MongoDB, as also
 # Rules
 
 An User, after logged in, is able to create and store Universers, as also to update his profile data.
+
 An Universe can afford Books and Characters.
+
 A Book can afford Characters.
+
 Characters can be part of an Affiliation.
