@@ -13,7 +13,7 @@ const Book = Schema(
             type: Schema.Types.ObjectId,
             ref: 'Character'
         }],
-        keyWords: [String]
+        keywords: [String]
     }
 );
 

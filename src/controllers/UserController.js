@@ -1,5 +1,5 @@
 const User = require('../models/User');
-//Um controle realiza até 5 operações
+//Um controle realiza 5 tipos de operações
 //INDEX, SHOW, STORE, UPDATE, DELETE
 
 module.exports = {

@@ -13,8 +13,8 @@ const Character = Schema(
             type: Schema.Types.ObjectId,
             ref: 'Affiliation'
         },
-        skills: [String],
         characteristics: [String],
+        skills: [String],
         description: String
     }
 );

@@ -7,7 +7,7 @@ const Universe = new Schema(
             required: true
         },
         description: String,
-        image: String,
+        image: [String],
         characteristics: [String],
         books: [{
             type: Schema.Types.ObjectId,
