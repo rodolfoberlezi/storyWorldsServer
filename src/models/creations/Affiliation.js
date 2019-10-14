@@ -6,10 +6,6 @@ const Affiliation = Schema(
             type: String,
             required: true
         },
-        members: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Character'
-        }],
         image: String,
         isGoodEvilNeutral: String,
         objective: String,

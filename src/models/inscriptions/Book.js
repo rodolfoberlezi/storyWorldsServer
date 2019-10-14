@@ -9,10 +9,6 @@ const Book = Schema(
         cover: String,
         synopsis: String,
         description: String,
-        characters: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Character'
-        }],
         keywords: [String]
     }
 );

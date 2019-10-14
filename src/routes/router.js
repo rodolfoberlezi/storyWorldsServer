@@ -20,15 +20,15 @@ router.delete('/users/:id', userController.delete);
 
 router.post('/universes', universeController.store);
 router.get('/universes', universeController.index);
-router.get('/universe/:id', universeController.show);
+router.get('/universes/:id', universeController.show);
 
-router.post('/books', bookController.store);
+router.post('/universes/:id/books', bookController.store);
 router.get('/books/:id', bookController.show);
 
-router.post('/characters', characterController.store);
-router.get('/characters/:id', bookController.show);
+router.post('/universes/:id/characters', characterController.store);
+router.get('/characters/:id', characterController.show);
 
-router.post('/affiliations', affiliationController.store);
-router.get('/affiliations/:id', bookController.show);
+router.post('/universes/:id/affiliations', affiliationController.store);
+router.get('/affiliations/:id', affiliationController.show);
 
 module.exports = router;

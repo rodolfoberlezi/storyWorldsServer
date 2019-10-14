@@ -2,18 +2,26 @@ const User = require('../models/User');
 const Universe = require('../models/Universe');
 
 module.exports = {
+    async index(req, res) {
+
+    },
+
     async show(req, res) {
         const { id } = req.params;
 
-        const universe = await Universe.findById({ id });
+        const universe = await Universe.findById({ _id: id });
 
         if (universe) {
-            if (!universe.books) {
+            if (!universe.books == []) {
                 await universe.populate('books').execPopulate();
             }
 
-            if (!universe.characters) {
+            if (!universe.characters == []) {
                 await universe.populate('characters').execPopulate();
+            }
+
+            if (!universe.affiliation == []) {
+                await universe.populate('affiliation').execPopulate();
             }
 
             console.log("Universe found and returned with success");

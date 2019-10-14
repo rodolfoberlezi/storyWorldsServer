@@ -23,7 +23,7 @@ module.exports = {
     async show(req, res) {
         const { id } = req.params;
 
-        const userExists = await User.findById({ id });
+        const userExists = await User.findById({ _id: id });
 
         if (userExists) {
             return res.status(200).send(userExists);

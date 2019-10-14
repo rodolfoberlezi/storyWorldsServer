@@ -5,13 +5,10 @@ module.exports = {
     async show(req, res) {
         const { id } = req.params;
 
-        const book = await Book.findById({ id });
+        const book = await Book.findById({ _id: id });
 
         if (book) {
-            if (!book.characters) {
-                book.populate('characters').execPopulate();
-            }
-
+            console.log("Book found and returned");
             return res.status(200).send(book);
         }
 
@@ -20,8 +17,10 @@ module.exports = {
     },
 
     async store(req, res) {
-        //preciso saber qual universo está
+        const universe_id = req.params.id;
         const { title, cover, synopsis, description, keywords } = req.body;
+
+        const universe = await Universe.findById({ _id: universe_id });
 
         const book = await Book.create({
             title,
@@ -30,6 +29,9 @@ module.exports = {
             description,
             keywords
         });
+
+        universe.books.push(book._id);
+        await universe.save();
 
         return res.status(200).send(book);
     }

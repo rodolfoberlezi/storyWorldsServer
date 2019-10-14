@@ -9,10 +9,6 @@ const Character = Schema(
         isMain: Boolean,
         isGoodEvilNeutral: String,
         occupation: String,
-        affiliation: {
-            type: Schema.Types.ObjectId,
-            ref: 'Affiliation'
-        },
         characteristics: [String],
         skills: [String],
         description: String

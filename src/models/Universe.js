@@ -17,6 +17,10 @@ const Universe = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'Character'
         }],
+        affiliations: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Affiliation'
+        }],
         races: [String],
         places: [String],
     },
