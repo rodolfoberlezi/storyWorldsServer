@@ -9,22 +9,37 @@ module.exports = {
         const userExists = await User.findOne({ user, password });
 
         if (userExists) {
+            if (!userExists.universes) {
+                await userExists.populate('universes').execPopulate();
+            }
             console.log("Success to login");
-            return res.send(userExists);
+            return res.status(200).send(userExists);
         }
 
         console.log('Invalid credentials to connect.');
-        return res.send('Username or password does not exists or is incorrect.')
+        return res.status(400).send('Username or password does not exists or is incorrect.')
+    },
+
+    async show(req, res) {
+        const { id } = req.params;
+
+        const userExists = await User.findById({ id });
+
+        if (userExists) {
+            return res.status(200).send(userExists);
+        }
+
+        return res.status(400).send('User data not found');
     },
 
     async store(req, res) {
-        let { user } = req.body;
+        const { user } = req.body;
 
         const userExists = await User.findOne({ user });
 
         if (userExists) {
             console.log(`User ${userExists.user} is already being used`);
-            return res.send('User is already being used. Please, try another username.');
+            return res.status(400).send('User is already being used. Please, try another username.');
         }
 
         let { name, password, email, bio, avatar, fantasyName } = req.body;
@@ -44,6 +59,14 @@ module.exports = {
         });
 
         console.log('Your account has been successfully created.');
-        return res.send(user);
+        return res.status(200).send(user);
+    },
+
+    async update() {
+
+    },
+
+    async delete() {
+
     }
 }

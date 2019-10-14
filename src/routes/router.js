@@ -12,15 +12,23 @@ router.get('/', (req, res) => {
     res.send("Hello World");
 });
 
-router.get('/user', userController.index);
-router.post('/user', userController.store);
+router.post('/users', userController.store);
+router.get('/users', userController.index);
+router.get('/users/:id', userController.show);
+router.put('/users/:id', userController.update);
+router.delete('/users/:id', userController.delete);
 
-router.post('/universe', universeController.store);
+router.post('/universes', universeController.store);
+router.get('/universes', universeController.index);
+router.get('/universe/:id', universeController.show);
 
-router.post('/book', bookController.store);
+router.post('/books', bookController.store);
+router.get('/books/:id', bookController.show);
 
-router.post('/character', characterController.store);
+router.post('/characters', characterController.store);
+router.get('/characters/:id', bookController.show);
 
-router.post('/affiliation', affiliationController.store);
+router.post('/affiliations', affiliationController.store);
+router.get('/affiliations/:id', bookController.show);
 
 module.exports = router;

@@ -2,14 +2,29 @@ const User = require('../models/User');
 const Universe = require('../models/Universe');
 
 module.exports = {
-    async index(req, res) {
-        const { name } = req.body;
+    async show(req, res) {
         const { id } = req.params;
+
+        const universe = await Universe.findById({ id });
+
+        if (universe) {
+            if (!universe.books) {
+                await universe.populate('books').execPopulate();
+            }
+
+            if (!universe.characters) {
+                await universe.populate('characters').execPopulate();
+            }
+
+            console.log("Universe found and returned with success");
+            return res.status(200).send(universe);
+        }
+
+        console.log("Universe not found by id");
+        return res.status(400).send("Universe not found");
     },
 
     async store(req, res) {
-        //terei que verificar se o usuário está logado
-        //JWToken ou pelo header
         const { user } = req.headers;
 
         const loggedUser = await User.findOne({ user });
@@ -28,6 +43,6 @@ module.exports = {
         loggedUser.universes.push(universe._id);
         await loggedUser.save();
 
-        return res.send(universe);
+        return res.status(200).send(universe);
     }
 }

@@ -16,6 +16,6 @@ module.exports = {
             description
         });
 
-        return res.send(character);
+        return res.status(200).send(character);
     }
 }
