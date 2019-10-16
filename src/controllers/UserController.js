@@ -4,8 +4,8 @@ const User = require('../models/User');
 
 module.exports = {
     async index(req, res) {
-        const { user, password } = req.body;
-
+        const { user, password } = req.query;
+        
         const userExists = await User.findOne({ user, password });
 
         if (userExists) {
