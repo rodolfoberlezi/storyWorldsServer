@@ -21,7 +21,7 @@ module.exports = {
             }
 
             if (!universe.affiliation == []) {
-                await universe.populate('affiliation').execPopulate();
+                await universe.populate('affiliations').execPopulate();
             }
 
             console.log("Universe found and returned with success");
